@@ -1,0 +1,35 @@
+apiversion: v1
+kind: Configmap
+metadata: 
+  name: grafana-datasources
+  lebels:
+    app: grafana
+data:
+  datasources.yaml: |
+    apiversion: 1
+    datasources:
+      - name: prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus:9090
+        isDefault: true
+
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki:3100
+
+      - name:Tempo
+        type: tempo
+        access: proxy
+        url: http://tempo:3200
+        jsonData:
+          tracesToLogsV2:
+            datasourceUid: 'Loki'
+            spanStartTimeShift: '-5m'
+            spanEndTimeShift: '5m'
+            filterByTraceID: true
+            filterBySpanID: false
+
+
+  
