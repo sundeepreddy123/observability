@@ -6,7 +6,7 @@ namespace: observability
 resources:
   - namespacee.yaml
 
-  - grafana/configmap-datasources.yaml
+  - grafana/configmap.yaml
   - grafana/deployment.yaml
   - grafana/service.yaml
 
